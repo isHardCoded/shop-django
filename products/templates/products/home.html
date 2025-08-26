@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h3>Our Products</h3>
-    <h2>Buy Our Products</h2>
+{% extends 'products/base.html' %}
+{% load static %}
 
-    <ul>
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <ul class="product-list">
         {% for product in products %}
-            <li>
-                <div>
+            <li class="product-item">
+                <div class="product-block">
                     <img src="{{ product.get_image }}" alt="">
-                    <p>{{ product.name }}</p>
-                    <p>${{ product.price }}</p>
+                    <p class="product-name">{{ product.name }}</p>
+                    <p class="product-price">${{ product.price }}</p>
                 </div>
             </li>
         {% endfor %}
     </ul>
-
-</body>
-</html>
+{% endblock %}
