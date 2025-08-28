@@ -11,8 +11,7 @@ def products_by_category(request, category_id):
     category = ProductCategory.objects.get(id=category_id)
     products = Product.objects.filter(category=category)
 
-    return render(request, 'products/home.html', context={
+    return render(request, 'products/products_by_category.html', context={
         "products": products,
-        "categories": ProductCategory.objects.all(),
-        "current_category": category_id,
+        "category_name": category.name,
     })
