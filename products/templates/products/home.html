@@ -56,7 +56,9 @@
     <section class="products">
                         <h4 class="products-subtitle">Our Products</h4>
                         <h2 class="products-title">Explore Our Products</h2>
-                        <ul class="products-list">
+
+                        {% if products %}
+                            <ul class="products-list">
                             {% for product in products %}
                                 <li class="products-item">
                                     <div class="product-block">
@@ -71,12 +73,15 @@
                                         </div>
                                         <div class="product-actions">
                                             <p class="product-price">${{ product.price }}</p>
-                                            <button class="product-add-cart">+</button>
+                                            <a href="{% url 'add_to_cart' product_id=product.id %}" class="product-add-cart">+</a>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                             {% endfor %}
                         </ul>
-                    </section>
+                        {% else %}
+                            <p>Продуктов нет</p>
+                        {% endif %}
+    </section>
 {% endblock %}

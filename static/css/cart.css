@@ -1,0 +1,129 @@
+.cart-title {
+	margin-top: 30px;
+	font-size: 36px;
+}
+
+.cart-wrapper {
+	display: flex;
+	margin-top: 50px;
+}
+
+.cart-list {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	gap: 40px;
+	list-style: none;
+	padding: 20px;
+
+	width: 550px;
+}
+
+.cart-product-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.cart-product-block {
+	position: relative;
+	display: flex;
+	gap: 15px;
+
+	.cart-product-image {
+		background-color: rgb(235, 235, 235);
+		border-radius: 5px;
+		width: 124px;
+		height: 124px;
+
+		img {
+			width: 124px;
+		}
+	}
+
+	.cart-product-content {
+		display: flex;
+		gap: 5px;
+		flex-direction: column;
+
+		h4 {
+			font-size: 20px;
+		}
+
+		p {
+			color: gray;
+			font-size: 14px;
+		}
+	}
+}
+
+.cart-product-actions {
+	display: flex;
+	justify-content: space-between;
+
+	.cart-product-price {
+		color: black;
+		font-weight: bold;
+		font-size: 24px;
+	}
+
+	.product-change-quantity {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+
+		background-color: #f0f0f0;
+		padding: 3px;
+
+		border-radius: 5px;
+
+		p {
+			font-size: 20px;
+		}
+		button {
+			display: flex;
+			border-radius: 5px;
+			align-items: center;
+			justify-content: center;
+			outline: 0;
+			border: 0;
+			cursor: pointer;
+
+			span {
+				font-size: 25px;
+			}
+
+			transition: 0.2s ease all;
+		}
+
+		button:hover {
+			background-color: gainsboro;
+		}
+	}
+}
+
+.remove-product-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	outline: 0;
+	border: 0;
+	background: none;
+	width: 32px;
+	height: 32px;
+	border-radius: 5px;
+	cursor: pointer;
+
+	transition: 0.2s ease all;
+}
+
+.remove-product-btn:hover {
+	background-color: rgb(255, 210, 210);
+}
+
+.remove-product-btn:hover .remove-svg {
+	fill: rgb(255, 72, 72);
+}

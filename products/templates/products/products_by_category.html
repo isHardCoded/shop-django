@@ -9,7 +9,8 @@
 <section class="products">
                         <h4 class="products-subtitle">Our Products</h4>
                         <h2 class="products-title">{{ category_name }}</h2>
-                        <ul class="products-list">
+                        {% if products %}
+                            <ul class="products-list">
                             {% for product in products %}
                                 <li class="products-item">
                                     <div class="product-block">
@@ -31,5 +32,8 @@
                             </li>
                             {% endfor %}
                         </ul>
+                        {% else %}
+                            <p>Продуктов нет</p>
+                        {% endif %}
                     </section>
 {% endblock %}
