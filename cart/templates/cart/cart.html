@@ -1,0 +1,16 @@
+{% extends 'cart/base.html' %}
+
+{% block content %}
+    {% if cart_items %}
+        <ul>
+            {% for item in cart_items %}
+            <li>
+                {{ item.product.name }} - {{ item.quantity }} шт. - ${{ item.get_total_price }}
+            </li>
+            {% endfor %}
+        </ul>
+        <p>Общая сумма: ${{ total_price }}</p>
+    {% else %}
+        <p>Ваша корзина пуста.</p>
+    {% endif %}
+{% endblock %}
