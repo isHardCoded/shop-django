@@ -7,7 +7,7 @@
 
 {% block content %}
         <section class="cart">
-			<h2 class="cart-title">Your Cart</h2>
+{#			<h2 class="cart-title">Your Cart</h2>#}
 			<div class="cart-wrapper">
                 {% if cart_items %}
 				<ul class="cart-list">
@@ -25,7 +25,7 @@
 								<div class="cart-product-actions">
 									<p class="cart-product-price">${{ item.get_total_price }}</p>
 									<div class="product-change-quantity">
-										<button>
+										<a href="{% url 'change_quantity' item_id=item.id action='decrease' %}">
 											<svg
 												width="20"
 												height="20"
@@ -38,9 +38,9 @@
 													fill="black"
 												/>
 											</svg>
-										</button>
+										</a>
 										<p>{{ item.quantity }}</p>
-										<button>
+										<a href="{% url 'change_quantity' item_id=item.id action='increase' %}">
 											<svg
 												width="20"
 												height="20"
@@ -53,11 +53,11 @@
 													fill="black"
 												/>
 											</svg>
-										</button>
+										</a>
 									</div>
 								</div>
 							</div>
-							<button class="remove-product-btn">
+							<a href="{% url 'remove_from_cart' item_id=item.id %}" class="remove-product-btn">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="24"
@@ -71,15 +71,39 @@
 										d="M20 6h-4V5a3 3 0 0 0-3-3h-2a3 3 0 0 0-3 3v1H4a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2ZM10 5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1h-4Zm7 14a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8h10Z"
 									/>
 								</svg>
-							</button>
+							</a>
 						</div>
 					</li>
                 {% endfor %}
 				</ul>
+                    <div class="cart-details">
+                      <h2 class="cart-details-title">Order summary</h2>
+                      <div class="cart-details-stats">
+                        <div class="cart-details-item">
+                          <p>Subtotal</p>
+                          <span>$565</span>
+                        </div>
+                        <div class="cart-details-item">
+                          <p>Discount (20%)</p>
+                          <span style="color: red">-$113</span>
+                        </div>
+                        <div class="cart-details-item">
+                          <p>Delivery Fee</p>
+                          <span>$15</span>
+                        </div>
+                      </div>
+                      <div class="cart-details-total">
+                        <p>Total</p>
+                        <span>$467</span>
+                      </div>
+                      <a href="{% url 'checkout' %}" class="cart-checkout-btn"> Go To Checkout →</a>
+                </div>
                  {% else %}
-                    <p>Ваша корзина пуста.</p>
+                    <div class="cart-empty">
+                        <p>Ваша корзина пуста</p>
+                        <a href="{% url 'home' %}">← Отправиться за покупками</a>
+                    </div>
                 {% endif %}
 			</div>
 		</section>
-        <p>Общая сумма: ${{ total_price }}</p>
 {% endblock %}
