@@ -92,18 +92,18 @@
 				</div>
 			</div>
             <div class="profile-edit-buttons">
-				<button type="submit" class="save-btn">Save Changes</button>
+				<button name="profile_submit" type="submit" class="save-btn">Save Changes</button>
 			</div>
 		</form>
 		<form method="POST" class="profile-edit-password">
             {% csrf_token %}
 			<h3>Password Changes</h3>
-			<input type="text" placeholder="Current Password" />
-			<input type="text" placeholder="New Password" />
-			<input type="text" placeholder="Confirm New Password" />
+			<input name="current_password" type="text" placeholder="Current Password" />
+			<input name="new_password" type="text" placeholder="New Password" />
+			<input name="confirm_password" type="text" placeholder="Confirm New Password" />
 			<div class="profile-edit-buttons">
 				<a href="{% url 'profile' username=user.username %}" class="cancel-btn">Cancel</a>
-				<button type="submit" class="save-btn">Change Password</button>
+				<button name="password_submit" type="submit" class="save-btn">Change Password</button>
 			</div>
 		</form>
 	</div>

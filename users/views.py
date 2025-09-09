@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout, update_session_auth_hash
 from django.contrib import messages
 from .models import User
 
@@ -70,17 +70,45 @@ def profile_edit(request):
     user = request.user
 
     if request.method == 'POST':
-        first_name = request.POST['firstname']
-        last_name = request.POST['lastname']
-        email = request.POST['email']
+        if 'profile_submit' in request.POST:
+            first_name = request.POST['firstname']
+            if first_name:
+                user.first_name = first_name
 
-        user.first_name = first_name
-        user.last_name = last_name
-        user.email = email
+            last_name = request.POST['lastname']
+            if last_name:
+                user.last_name = last_name
 
-        user.save()
+            email = request.POST['email']
+            if email:
+                user.email = email
 
-        return redirect('profile', username=user.username)
+            user.save()
+
+            return redirect('profile', username=user.username)
+
+        elif 'password_submit' in request.POST:
+            current_password = request.POST['current_password']
+            new_password = request.POST['new_password']
+            confirm_password = request.POST['confirm_password']
+
+            if not user.check_password(current_password):
+                messages.error(request, "Current password is incorrect")
+
+            elif new_password != confirm_password:
+                messages.error(request, "New password and confirm password do not match")
+
+            else:
+                user.set_password(new_password)
+                user.save()
+                update_session_auth_hash(request, user)
+
+                return render(request, 'users/profile.html', context={
+                    'username': user.username,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'email': user.email,
+                })
     return render(request, 'users/profile_edit.html', context={
         'username': user.username,
         'first_name': user.first_name,
