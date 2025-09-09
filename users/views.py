@@ -1,5 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib import messages
 from .models import User
 
 def register(request):
@@ -54,4 +56,34 @@ def logout(request):
     return redirect('login')
 
 def profile(request, username):
-    return render(request, 'users/profile.html', {'username': username})
+    user = request.user
+
+    return render(request, 'users/profile.html', context={
+        'username': username,
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'email': user.email,
+    })
+
+@login_required(login_url='login')
+def profile_edit(request):
+    user = request.user
+
+    if request.method == 'POST':
+        first_name = request.POST['firstname']
+        last_name = request.POST['lastname']
+        email = request.POST['email']
+
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+
+        user.save()
+
+        return redirect('profile', username=user.username)
+    return render(request, 'users/profile_edit.html', context={
+        'username': user.username,
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'email': user.email,
+    })

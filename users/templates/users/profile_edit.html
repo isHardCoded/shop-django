@@ -4,7 +4,7 @@
 <header class="header-profile">
 	<p>My Account</p>
 	<div>
-		<p>Welcome! <span class="profile-username">{{ username }}</span></p>
+		<p>Welcome! <span class="profile-username">{{ user.username }}</span></p>
 		<a href="{% url 'logout' %}">
 			<svg
 				width="18"
@@ -66,58 +66,46 @@
 		</nav>
 	</aside>
 	<div class="profile-edit">
-		<div class="profile-edit-form">
-			<h3>Profile</h3>
+		<form method="POST" class="profile-edit-form">
+            {% csrf_token %}
+			<h3>Edit Your Profile</h3>
 			<div class="profile-edit-data">
 				<div>
 					<div class="input-wrapper">
-						<p>First Name</p>
-						<p>
-                            {% if first_name %}
-                                {{ first_name }}
-                            {% else %}
-                                Empty
-                            {% endif %}
-                        </p>
+						<label for="firstname">First Name</label>
+						<input id="firstname" name="firstname" type="text" placeholder="{{ first_name }}" />
 					</div>
 					<div class="input-wrapper">
-						<p>Last Name</p>
-						<p>
-                            {% if last_name %}
-                                {{ last_name }}
-                            {% else %}
-                                Empty
-                            {% endif %}
-                        </p>
+						<label for="lastname">Last Name</label>
+						<input id="lastname" name="lastname" type="text" placeholder="{{ last_name }}" />
 					</div>
 				</div>
 				<div>
 					<div class="input-wrapper">
-						<p>Email</p>
-						<p>
-                            {% if email %}
-                                {{ email }}
-                            {% else %}
-                                Empty
-                            {% endif %}
-                        </p>
+						<label for="email">Email</label>
+						<input id="email" name="email" type="text" placeholder="{{ email }}" />
 					</div>
 					<div class="input-wrapper">
-						<p>Address</p>
-						<p>
-                            {% if address %}
-                                {{ address }}
-                            {% else %}
-                                Empty
-                            {% endif %}
-                        </p>
+						<label for="address">Address</label>
+						<input id="address" name="address" type="text" placeholder="Empty" />
 					</div>
 				</div>
-                <div class="profile-edit-buttons">
-                    <a href="{% url 'profile_edit' %}" class="save-btn">Edit</a>
-                </div>
 			</div>
-		</div>
+            <div class="profile-edit-buttons">
+				<button type="submit" class="save-btn">Save Changes</button>
+			</div>
+		</form>
+		<form method="POST" class="profile-edit-password">
+            {% csrf_token %}
+			<h3>Password Changes</h3>
+			<input type="text" placeholder="Current Password" />
+			<input type="text" placeholder="New Password" />
+			<input type="text" placeholder="Confirm New Password" />
+			<div class="profile-edit-buttons">
+				<a href="{% url 'profile' username=user.username %}" class="cancel-btn">Cancel</a>
+				<button type="submit" class="save-btn">Change Password</button>
+			</div>
+		</form>
 	</div>
 </div>
 {% endblock %}
