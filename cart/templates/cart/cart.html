@@ -82,11 +82,11 @@
 			<div class="cart-details-stats">
 				<div class="cart-details-item">
 					<p>Subtotal</p>
-					<span>$565</span>
+					<span>${{ subtotal }}</span>
 				</div>
 				<div class="cart-details-item">
 					<p>Discount (20%)</p>
-					<span style="color: red">-$113</span>
+					<span style="color: red">-${{ discount|floatformat:1 }}</span>
 				</div>
 				<div class="cart-details-item">
 					<p>Delivery Fee</p>
@@ -95,7 +95,7 @@
 			</div>
 			<div class="cart-details-total">
 				<p>Total</p>
-				<span>$467</span>
+				<span>${{ total_price }}</span>
 			</div>
 			<a href="{% url 'checkout' %}" class="cart-checkout-btn">
 				Go To Checkout →</a
