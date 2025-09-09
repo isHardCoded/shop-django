@@ -39,6 +39,7 @@
 .header-search {
 	background-color: var(--secondary-color-2);
 	display: flex;
+	border-radius: 5px;
 	gap: 30px;
 	padding: 10px 20px;
 }
@@ -47,16 +48,38 @@
 	outline: 0;
 	border: 0;
 	background: none;
+
 	width: 100%;
 	font-size: 12px;
 }
 
 .header-buttons {
 	display: flex;
-	align-items: center gap 10px;
+	align-items: center;
+	gap: 10px;
 
 	button {
 		cursor: pointer;
+	}
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		padding: 5px;
+		border-radius: 50%;
+	}
+
+	.header-svg:hover {
+		stroke: white;
+	}
+
+	a:hover {
+		background-color: var(--secondary-color-1);
+	}
+
+	a:hover svg path {
+		stroke: white;
 	}
 }
 

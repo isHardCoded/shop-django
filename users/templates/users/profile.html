@@ -1,0 +1,79 @@
+{% extends 'products/base.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+{% endblock %} {% block content %}
+<header class="header-profile">
+	<p>My Account</p>
+	<p>Welcome! <span class="profile-username">{{ username }}</span></p>
+</header>
+<div class="profile-content">
+	<aside>
+		<nav class="profile-nav">
+			<div>
+				<h3>Manage My Account</h3>
+				<ul>
+					<li>
+						<a href="#">My Profile</a>
+					</li>
+					<li>
+						<a href="#">Address Book</a>
+					</li>
+					<li>
+						<a href="#">My Payment Options</a>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<h3>My Orders</h3>
+				<ul>
+					<li>
+						<a href="#">My Returns</a>
+					</li>
+					<li>
+						<a href="#">My Cancellations</a>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<h3>My WishList</h3>
+			</div>
+		</nav>
+	</aside>
+	<div class="profile-edit">
+		<form class="profile-edit-form">
+			<h3>Edit Your Profile</h3>
+			<div class="profile-edit-data">
+				<div>
+					<div class="input-wrapper">
+						<label for="firstname">First Name</label>
+						<input id="firstname" type="text" placeholder="1" />
+					</div>
+					<div class="input-wrapper">
+						<label for="lastname">Last Name</label>
+						<input id="lastname" type="text" placeholder="1" />
+					</div>
+				</div>
+				<div>
+					<div class="input-wrapper">
+						<label for="email">Email</label>
+						<input id="email" type="text" placeholder="1" />
+					</div>
+					<div class="input-wrapper">
+						<label for="address">Address</label>
+						<input id="address" type="text" placeholder="1" />
+					</div>
+				</div>
+			</div>
+		</form>
+		<form class="profile-edit-password">
+			<h3>Password Changes</h3>
+			<input type="text" placeholder="Current Password" />
+			<input type="text" placeholder="New Password" />
+			<input type="text" placeholder="Confirm New Password" />
+			<div class="profile-edit-buttons">
+				<a class="cancel-btn" href="#">Cancel</a>
+				<a class="save-btn" href="#">Save Changes</a>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}
