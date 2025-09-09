@@ -6,6 +6,25 @@
 	.profile-username {
 		color: var(--secondary-color-1);
 	}
+
+	div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+
+		a {
+			padding-top: 3px;
+		}
+
+		a:hover {
+			color: var(--secondary-color-1);
+		}
+
+		a:hover svg path {
+			stroke: var(--secondary-color-1);
+		}
+	}
 }
 
 .profile-content {
