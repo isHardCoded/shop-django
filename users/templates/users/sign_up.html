@@ -1,0 +1,27 @@
+{% extends 'products/base.html' %} {% load static %} {% block content %}
+<section class="auth">
+	<img class="auth-img" src="{% static 'assets/auth-img.png' %}" alt="" />
+	<form class="auth-form" method="POST">
+		{% csrf_token %}
+		<h1 class="auth-title">Create an account</h1>
+		<p class="auth-subtitle">Enter your details below</p>
+
+		<div class="auth-inputs">
+			<input name="username" type="text" placeholder="Name" />
+			<input name="email" type="email" placeholder="Email" />
+			<input name="password" type="password" placeholder="Password" />
+		</div>
+
+		<div class="auth-buttons">
+			<button class="auth-submit" type="submit">Create Account</button>
+			<button class="auth-google">
+				<img src="{% static 'assets/google-icon.svg' %}" alt="" />
+				<span>Sign up with Google</span>
+			</button>
+		</div>
+		<p class="move-to-login">
+			Already have account? <a href="{% url 'login' %}"><u>Log in</u></a>
+		</p>
+	</form>
+</section>
+{% endblock %}

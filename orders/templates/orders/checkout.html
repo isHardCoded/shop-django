@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Your name">
+        <input type="text" placeholder="City">
+        <input type="text" placeholder="Street">
+        <input type="text" placeholder="Apartment, floor, etc. (optional)">
+        <input type="text" placeholder="Phone number">
+        <input type="text" placeholder="Email Address">
+
+        <button type="submit">Place Order</button>
+    </form>
+    <ul>
+        {% for item in cart_items %}
+            <li>
+                <img src="{{ item.product.get_image }}" alt="">
+                <p>{{ item.product.name }} - <span>{{ item.product.price }}</span></p>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Total price: {{ total_price }}</p>
+</body>
+</html>

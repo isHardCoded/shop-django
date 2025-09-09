@@ -1,0 +1,26 @@
+{% extends 'products/base.html' %} {% load static %} {% block content %}
+<section class="auth">
+	<img class="auth-img" src="{% static 'assets/auth-img.png' %}" alt="" />
+	<form class="auth-form" method="POST">
+		{% csrf_token %}
+		<h1 class="auth-title">Log In</h1>
+		<p class="auth-subtitle">Enter your details below</p>
+
+		<div class="auth-inputs">
+			<input name="username" type="text" placeholder="Name" />
+			<input name="password" type="text" placeholder="Password" />
+		</div>
+
+		{% if error %}
+		<p class="error">{{ error }}</p>
+		{% endif %}
+
+		<div class="auth-buttons">
+			<button class="auth-submit" type="submit">Log In</button>
+		</div>
+		<p class="move-to-login">
+			Haven't an account? <a href="{% url 'register' %}"><u>Sign Up</u></a>
+		</p>
+	</form>
+</section>
+{% endblock %}

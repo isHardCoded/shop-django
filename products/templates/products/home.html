@@ -1,0 +1,93 @@
+{% extends 'products/base.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %} {% block content %}
+<section class="hero">
+	<aside class="hero-navbar">
+		<ul class="hero-list">
+			<li class="hero-item">
+				<a href="#" class="hero-link">Woman’s Fashion</a>
+			</li>
+			<li class="hero-item">
+				<a href="#" class="hero-link">Men’s Fashion</a>
+			</li>
+			<li class="hero-item">
+				<a href="#" class="hero-link">Electronics</a>
+			</li>
+			<li class="hero-item">
+				<a href="#" class="hero-link">Home & Lifestyle</a>
+			</li>
+			<li class="hero-item">
+				<a href="#" class="hero-link">Medicine</a>
+			</li>
+			<li class="hero-item">
+				<a href="#" class="hero-link">Sports & Outdoor</a>
+			</li>
+			<li class="hero-item">
+				<a href="#" class="hero-link">Baby’s & Toys</a>
+			</li>
+			<li class="hero-item">
+				<a href="#" class="hero-link">Groceries & Pets</a>
+			</li>
+			<li class="hero-item">
+				<a href="#" class="hero-link">Health & Beauty</a>
+			</li>
+		</ul>
+	</aside>
+	<img src="{% static 'assets/slider.svg' %}" alt="" class="hero-slider" />
+</section>
+<section class="categories">
+	<h4 class="categories-subtitle">Categories</h4>
+	<h2 class="categories-title">Browse By Category</h2>
+	<ul class="categories-list">
+		{% for category in categories %}
+		<li class="categories-item">
+			<a
+				href="{% url 'products_by_category' category_id=category.id %}"
+				class="categories-block"
+			>
+				<p class="categories-name">{{ category.name }}</p>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</section>
+<section class="products">
+	<h4 class="products-subtitle">Our Products</h4>
+	<h2 class="products-title">Explore Our Products</h2>
+
+	{% if products %}
+	<ul class="products-list">
+		{% for product in products %}
+		<li class="products-item">
+			<div class="product-block">
+				<div class="product-image">
+					<img src="{{ product.get_image }}" alt="" />
+				</div>
+				<div class="product-info">
+					<p class="product-category">{{ product.category }}</p>
+					<h4 class="product-name">{{ product.name }}</h4>
+					<div class="product-rating">
+						<img
+							class="product-star"
+							src="{% static 'assets/star.svg' %}"
+							alt=""
+						/>
+					</div>
+					<div class="product-actions">
+						<p class="product-price">${{ product.price }}</p>
+						<a
+							href="{% url 'add_to_cart' product_id=product.id %}"
+							class="product-add-cart"
+							>+</a
+						>
+					</div>
+				</div>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p>Продуктов нет</p>
+	{% endif %}
+</section>
+{% endblock %}

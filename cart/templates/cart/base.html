@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/global.css' %}" />
+        {% block css %} {% endblock %}
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="ad">
+			<p>
+				Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
+				<span
+					><u><b>ShopNow</b></u></span
+				>
+			</p>
+		</div>
+		<div class="container">
+			<header class="header">
+				<h2 class="header-logo">Exclusive</h2>
+				<nav class="header-nav">
+					<ul class="header-list">
+						<li class="header-item">
+							<a href="{% url 'home' %}" class="header-link">Home</a>
+						</li>
+						<li class="header-item">
+							<a href="#" class="header-link">Contact</a>
+						</li>
+						<li class="header-item">
+							<a href="#" class="header-link">About</a>
+						</li>
+						<li class="header-item">
+							<a href="#" class="header-link">Sign Up</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="header-actions">
+					<div class="header-search">
+						<input
+							class="header-input"
+							placeholder="What are you looking for?"
+							type="text"
+						/>
+						<img class="header-search-image" src="{% static 'assets/loop.svg' %}" alt="" />
+					</div>
+                    {% if request.user.is_authenticated %}
+                        <div class="header-buttons">
+                            <button class="header-favour">
+                                <img src="{% static 'assets/heart.svg' %}" alt="" />
+                            </button>
+                            <a href="{% url 'cart' %}" class="header-cart">
+                                <img src="{% static 'assets/cart.svg' %}" alt="" />
+                            </a>
+                            <a href="{% url 'logout' %}">Выйти</a>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'login' %}">Войти</a>
+                    {% endif %}
+				</div>
+			</header>
+
+            <main>
+                {% block content %} {% endblock %}
+            </main>
+
+        </div>
+	</body>
+</html>

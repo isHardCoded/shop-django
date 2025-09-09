@@ -1,0 +1,155 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/global.css' %}" />
+		{% block css %} {% endblock %}
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="ad">
+			<p>
+				Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
+				<span
+					><u><b>ShopNow</b></u></span
+				>
+			</p>
+		</div>
+		<div class="container">
+			<header class="header">
+				<h2 class="header-logo">Exclusive</h2>
+				<nav class="header-nav">
+					<ul class="header-list">
+						<li class="header-item">
+							<a href="{% url 'home' %}" class="header-link">Home</a>
+						</li>
+						<li class="header-item">
+							<a href="#" class="header-link">Contact</a>
+						</li>
+						<li class="header-item">
+							<a href="#" class="header-link">About</a>
+						</li>
+						<li class="header-item">
+							<a href="#" class="header-link">Sign Up</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="header-actions">
+					<div class="header-search">
+						<input
+							class="header-input"
+							placeholder="What are you looking for?"
+							type="text"
+						/>
+						<img
+							class="header-search-image"
+							src="{% static 'assets/loop.svg' %}"
+							alt=""
+						/>
+					</div>
+					{% if request.user.is_authenticated %}
+					<div class="header-buttons">
+						<a href="#" class="header-favour">
+							<svg
+								width="32"
+								height="32"
+								viewBox="0 0 32 32"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									class="header-svg"
+									d="M11 7C8.239 7 6 9.216 6 11.95C6 14.157 6.875 19.395 15.488 24.69C15.6423 24.7839 15.8194 24.8335 16 24.8335C16.1806 24.8335 16.3577 24.7839 16.512 24.69C25.125 19.395 26 14.157 26 11.95C26 9.216 23.761 7 21 7C18.239 7 16 10 16 10C16 10 13.761 7 11 7Z"
+									stroke="black"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</a>
+						<a href="{% url 'cart' %}" class="header-cart">
+							<svg
+								width="32"
+								height="32"
+								viewBox="0 0 32 32"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								class="header-svg"
+							>
+								<path
+									d="M11 27C11.5523 27 12 26.5523 12 26C12 25.4477 11.5523 25 11 25C10.4477 25 10 25.4477 10 26C10 26.5523 10.4477 27 11 27Z"
+									stroke="black"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+								<path
+									d="M25 27C25.5523 27 26 26.5523 26 26C26 25.4477 25.5523 25 25 25C24.4477 25 24 25.4477 24 26C24 26.5523 24.4477 27 25 27Z"
+									stroke="black"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+								<path
+									d="M3 5H7L10 22H26"
+									stroke="black"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+								<path
+									d="M10 16.6667H25.59C25.7056 16.6667 25.8177 16.6267 25.9072 16.5535C25.9966 16.4802 26.0579 16.3782 26.0806 16.2648L27.8806 7.26479C27.8951 7.19222 27.8934 7.11733 27.8755 7.04552C27.8575 6.97371 27.8239 6.90678 27.7769 6.84956C27.73 6.79234 27.6709 6.74625 27.604 6.71462C27.5371 6.68299 27.464 6.66661 27.39 6.66666H8"
+									stroke="black"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</a>
+						<a
+							href="{% url 'profile' username=request.user.username %}"
+							class="header-svg"
+						>
+							<svg
+								width="32"
+								height="32"
+								viewBox="-6 -5 32 32"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								class="header-svg"
+							>
+								<path
+									d="M4.57757 14.4816C3.1628 15.324 -0.546635 17.0441 1.71266 19.1966C2.81631 20.248 4.04549 21 5.59087 21H14.4091C15.9545 21 17.1837 20.248 18.2873 19.1966C20.5466 17.0441 16.8372 15.324 15.4224 14.4816C12.1048 12.5061 7.89519 12.5061 4.57757 14.4816Z"
+									stroke="#000000"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+								<path
+									d="M14.5 5.5C14.5 7.98528 12.4853 10 10 10C7.51472 10 5.5 7.98528 5.5 5.5C5.5 3.01472 7.51472 1 10 1C12.4853 1 14.5 3.01472 14.5 5.5Z"
+									stroke="#000000"
+									stroke-width="1.5"
+								/>
+							</svg>
+						</a>
+					</div>
+					{% else %}
+					<a href="{% url 'login' %}">Войти</a>
+					{% endif %}
+				</div>
+			</header>
+
+			<main>{% block content %} {% endblock %}</main>
+		</div>
+	</body>
+</html>
