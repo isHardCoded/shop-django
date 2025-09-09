@@ -25,7 +25,7 @@
                                         </div>
                                         <div class="product-actions">
                                             <p class="product-price">${{ product.price }}</p>
-                                            <button class="product-add-cart">+</button>
+                                            <a href="{% url 'add_to_cart' product_id=product.id %}" class="product-add-cart">+</a>
                                         </div>
                                     </div>
                                 </div>
